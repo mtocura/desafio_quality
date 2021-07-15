@@ -39,7 +39,6 @@ public class AreaUtilTest {
         double responseAreaRoom = AreaUtil.calculate(this.objectMock.getWidth(), this.objectMock.getLength());
 
         Assertions.assertEquals(expectedAreaRoom, responseAreaRoom);
-
     }
 
     @Test
@@ -49,6 +48,5 @@ public class AreaUtilTest {
         double responseArea = AreaUtil.calculateTotalArea(this.subjectsMock);
 
         Assertions.assertEquals(expectedArea, responseArea);
-
     }
 }
