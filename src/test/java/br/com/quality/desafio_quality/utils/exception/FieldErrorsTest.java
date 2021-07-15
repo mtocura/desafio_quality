@@ -1,6 +1,5 @@
-package br.com.quality.desafio_quality.unit.utils.exception;
+package br.com.quality.desafio_quality.utils.exception;
 
-import br.com.quality.desafio_quality.utils.exception.FieldErrors;
 import org.junit.jupiter.api.Assertions;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;

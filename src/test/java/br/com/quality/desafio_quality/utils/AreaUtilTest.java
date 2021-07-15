@@ -1,7 +1,6 @@
-package br.com.quality.desafio_quality.unit.utils;
+package br.com.quality.desafio_quality.utils;
 
 import br.com.quality.desafio_quality.dto.RoomDTO;
-import br.com.quality.desafio_quality.utils.AreaUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
