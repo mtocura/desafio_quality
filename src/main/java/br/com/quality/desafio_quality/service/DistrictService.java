@@ -9,6 +9,7 @@ public class DistrictService {
 
     private DistrictRepository districtRepository;
 
+    @Autowired
     public DistrictService(DistrictRepository districtRepository) {
         this.districtRepository = districtRepository;
     }
