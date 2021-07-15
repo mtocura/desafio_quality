@@ -64,7 +64,7 @@ public class HouseService {
         House house = get(houseId);
         BigDecimal districtValue = house.getDistrict().getValueM2();
 
-        HouseSizeDTO houseTotalArea = calculateArea(houseId);
+        HouseSizeDTO houseTotalArea = getHouseArea(houseId);
 
         BigDecimal totalPrice = districtValue.multiply(BigDecimal.valueOf(houseTotalArea.getM2()));
 
