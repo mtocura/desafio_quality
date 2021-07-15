@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @NoArgsConstructor
@@ -46,8 +47,21 @@ public class HouseService {
         return this.houseRepository.save(house);
     }
 
-    public void delete(House house) {
-        this.houseRepository.delete(house);
+    public void delete(long id) {
+        this.houseRepository.deleteById(id);
+    }
+
+    public double calculateArea(House house) {
+        List<Room> rooms = house.getRooms();
+        List<Double> areas = rooms
+                .stream()
+                .map(room -> AreaUtil.calculate(room.getWidth(), room.getLength()))
+                .collect(Collectors.toList());
+        return AreaUtil.calculateTotalArea(areas);
+    }
+
+    public double calculatePrice(double areaPrice, double totalAreaM2) {
+        return areaPrice * totalAreaM2;
     }
 
     public List<RoomDTO> getRoomsAreas(long houseId) {
