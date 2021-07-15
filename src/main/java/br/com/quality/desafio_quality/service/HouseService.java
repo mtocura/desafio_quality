@@ -101,7 +101,7 @@ public class HouseService {
                 .getRooms()
                 .stream()
                 .reduce(null, HouseService::selectHouse);
-        return null;
+        return new RoomDTO(r.getName(), AreaUtil.calculate(r.getWidth(), r.getLength()));
     }
 
     private static Room selectHouse(Room a, Room b) {
