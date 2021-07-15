@@ -1,13 +1,16 @@
 package br.com.quality.desafio_quality.controller;
 
 import br.com.quality.desafio_quality.converter.DistrictConverter;
+import br.com.quality.desafio_quality.entity.District;
 import br.com.quality.desafio_quality.form.DistrictForm;
 import br.com.quality.desafio_quality.service.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api")
@@ -24,18 +27,20 @@ public class DistrictController {
     }
 
     @PostMapping("/districts")
-    public ResponseEntity<?> create(@Valid @RequestBody DistrictForm districtForm) {
-        return ResponseEntity.ok().body(this.districtService.create(DistrictConverter.districtFormToEntity(districtForm)));
+    public ResponseEntity<?> create(@Valid @RequestBody DistrictForm districtForm, UriComponentsBuilder uriBuilder) {
+        District district = this.districtService.create(DistrictConverter.districtFormToEntity(districtForm));
+        URI uri = uriBuilder.path("/api/districts/{id}").buildAndExpand(district.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping("/districts")
     public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok().body(this.districtService.get());
+        return ResponseEntity.ok().body(DistrictConverter.districtEntityToDTO(this.districtService.get()));
     }
 
     @GetMapping("/districts/{id}")
     public ResponseEntity<?> getById(@PathVariable long id) {
-        return ResponseEntity.ok(this.districtService.get(id));
+        return ResponseEntity.ok(DistrictConverter.districtEntityToDTO(this.districtService.get(id)));
     }
 
     @PutMapping("/districts/{id}")

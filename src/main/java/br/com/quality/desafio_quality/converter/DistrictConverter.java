@@ -1,5 +1,6 @@
 package br.com.quality.desafio_quality.converter;
 
+import br.com.quality.desafio_quality.dto.DistrictDTO;
 import br.com.quality.desafio_quality.entity.District;
 import br.com.quality.desafio_quality.form.DistrictForm;
 
@@ -24,5 +25,22 @@ public class DistrictConverter {
     }
 
     return districts;
+  }
+
+  public static DistrictDTO districtEntityToDTO(District district) {
+    return new DistrictDTO(
+            district.getId(),
+            district.getValueM2()
+    );
+  }
+
+  public static List<DistrictDTO> districtEntityToDTO(List<District> districts) {
+    List<DistrictDTO> districtDTOS = new ArrayList<>();
+
+    for (District district : districts) {
+      districtDTOS.add(districtEntityToDTO(district));
+    }
+
+    return districtDTOS;
   }
 }

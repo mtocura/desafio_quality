@@ -1,14 +1,17 @@
 package br.com.quality.desafio_quality.controller;
 
 import br.com.quality.desafio_quality.converter.HouseConverter;
+import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.form.HouseForm;
 import br.com.quality.desafio_quality.service.HouseService;
 import br.com.quality.desafio_quality.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api")
@@ -25,20 +28,20 @@ public class HouseController {
     }
 
     @PostMapping("/houses")
-    public ResponseEntity<?> create(@Valid @RequestBody HouseForm houseForm) {
-        return ResponseEntity.ok().body(this.houseService.create(HouseConverter.houseFormToEntity(houseForm)));
+    public ResponseEntity<?> create(@Valid @RequestBody HouseForm houseForm, UriComponentsBuilder uriBuilder) {
+        House house = this.houseService.create(HouseConverter.houseFormToEntity(houseForm));
+        URI uri = uriBuilder.path("/api/houses/{id}").buildAndExpand(house.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping("/houses")
     public ResponseEntity<?> getAll() {
-
-        return ResponseEntity.ok().body(this.houseService.get());
+        return ResponseEntity.ok().body(HouseConverter.houseEntityToDTO(this.houseService.get()));
     }
 
     @GetMapping("/houses/{id}")
     public ResponseEntity<?> getById(@PathVariable long id) {
-
-        return ResponseEntity.ok(this.houseService.get(id));
+        return ResponseEntity.ok(HouseConverter.houseEntityToDTO(this.houseService.get(id)));
     }
 
     @PutMapping("/houses/{id}")

@@ -2,7 +2,7 @@ package br.com.quality.desafio_quality.service;
 
 import br.com.quality.desafio_quality.dto.HouseSizeDTO;
 import br.com.quality.desafio_quality.dto.HouseValueDTO;
-import br.com.quality.desafio_quality.dto.RoomDTO;
+import br.com.quality.desafio_quality.dto.RoomSizeDTO;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.entity.Room;
 import br.com.quality.desafio_quality.exception.HouseNotFoundException;
@@ -80,18 +80,18 @@ public class HouseService {
         return new HouseValueDTO(house.getName(), houseTotalArea.getM2(), totalPrice);
     }
 
-    public List<RoomDTO> getRoomsAreas(long houseId) {
+    public List<RoomSizeDTO> getRoomsAreas(long houseId) {
         House house = get(houseId);
-        List<RoomDTO> rooms = new ArrayList<>();
+        List<RoomSizeDTO> rooms = new ArrayList<>();
 
         for (Room room : house.getRooms()) {
-            rooms.add(new RoomDTO(room.getName(), AreaUtil.calculate(room.getWidth(), room.getLength())));
+            rooms.add(new RoomSizeDTO(room.getName(), AreaUtil.calculate(room.getWidth(), room.getLength())));
         }
 
         return rooms;
     }
 
-    public RoomDTO largestRoom(long id) {
+    public RoomSizeDTO largestRoom(long id) {
         Optional<House> h = this.houseRepository.findById(id);
         if (h.isEmpty()) {
             throw new HouseNotFoundException("A casa " + id + " não foi encontrada");
@@ -101,7 +101,7 @@ public class HouseService {
                 .getRooms()
                 .stream()
                 .reduce(null, HouseService::selectHouse);
-        return new RoomDTO(r.getName(), AreaUtil.calculate(r.getWidth(), r.getLength()));
+        return new RoomSizeDTO(r.getName(), AreaUtil.calculate(r.getWidth(), r.getLength()));
     }
 
     private static Room selectHouse(Room a, Room b) {
