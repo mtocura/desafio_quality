@@ -53,7 +53,7 @@ public class HouseService {
         this.houseRepository.deleteById(id);
     }
 
-    public HouseSizeDTO calculateArea(long houseId) {
+    public HouseSizeDTO getHouseArea(long houseId) {
         House house = get(houseId);
         List<Room> rooms = house.getRooms();
         List<Double> areas = rooms
