@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class HouseService {
 
-    @Autowired
     private HouseRepository houseRepository;
+
+    @Autowired
+    public HouseService(HouseRepository houseRepository) {
+        this.houseRepository = houseRepository;
+    }
 }
