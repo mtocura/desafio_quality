@@ -18,7 +18,7 @@ public class DistrictForm {
 
   @NotNull(message = "O nome do bairro não pode ser nulo.")
   @NotEmpty(message = "O nome do bairro não pode estar vazio.")
-  @Pattern(regexp = "^([A-Z]{1})([a-z]{1,})$", message = "O nome do bairro deve ser composto por letras.")
+  @Pattern(regexp = "^(([A-ZÁÀÂÃÉÍÓÔÕÚÇ])([a-záàâãéêíóôõúç])+\\s?)+$", message = "O nome do bairro deve ser composto por letras.")
   @Size(max = 45, message = "O comprimento do bairro não pode exceder 45 caracteres.")
   @JsonProperty("prop_district")
   private String name;

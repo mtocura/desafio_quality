@@ -19,7 +19,7 @@ public class HouseForm {
 
   @NotNull(message = "O nome da propriedade não pode ser nulo.")
   @NotEmpty(message = "O nome da propriedade não pode estar vazio.")
-  @Pattern(regexp = "^([A-Z]{1})([a-z]{1,})$", message = "O nome da propriedade deve começar com uma letra maiúscula.")
+  @Pattern(regexp = "^(([A-ZÁÀÂÃÉÍÓÔÕÚÇ])([a-záàâãéêíóôõúç])+\\s?)+$", message = "O nome da propriedade deve começar com uma letra maiúscula.")
   @Size(max = 30, message = "O comprimento do nome não pode exceder 30 caracteres.")
   @JsonProperty("prop_name")
   private String name;
