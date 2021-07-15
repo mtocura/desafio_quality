@@ -1,6 +1,6 @@
 package br.com.quality.desafio_quality.exception.handler;
 
-import br.com.quality.desafio_quality.dto.ExceptionFieldDTO;
+import br.com.quality.desafio_quality.dto.FieldExceptionDTO;
 import br.com.quality.desafio_quality.utils.exception.FieldErrors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -19,7 +19,7 @@ public class ApiControllerExceptionAdvice {
         BindingResult result = e.getBindingResult();
 
         List<FieldError> fieldErrors = result.getFieldErrors();
-        ExceptionFieldDTO exceptions = new ExceptionFieldDTO(FieldErrors.processFieldErrors(fieldErrors));
+        FieldExceptionDTO exceptions = new FieldExceptionDTO(FieldErrors.processFieldErrors(fieldErrors));
 
         return ResponseEntity.badRequest().body(exceptions);
     }
