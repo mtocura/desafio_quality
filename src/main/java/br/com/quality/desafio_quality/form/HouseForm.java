@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Data
@@ -24,9 +21,9 @@ public class HouseForm {
   @JsonProperty("prop_name")
   private String name;
 
-  @Valid
   @NotNull(message = "O district não pode ser nulo.")
-  private DistrictForm district;
+  @Min(value = 1, message = "O id do bairro deve ser maior que 0.")
+  private Long districtId;
 
   @Valid
   @NotNull(message = "Os rooms não pode ser nulos.")

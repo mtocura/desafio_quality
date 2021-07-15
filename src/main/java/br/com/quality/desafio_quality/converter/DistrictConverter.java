@@ -12,8 +12,7 @@ public class DistrictConverter {
   public static District districtFormToEntity(DistrictForm districtForm) {
     return new District(
             districtForm.getName(),
-            districtForm.getValue(),
-            null
+            districtForm.getValue()
     );
   }
 
@@ -30,6 +29,7 @@ public class DistrictConverter {
   public static DistrictDTO districtEntityToDTO(District district) {
     return new DistrictDTO(
             district.getId(),
+            district.getName(), 
             district.getValueM2()
     );
   }

@@ -12,6 +12,6 @@ import java.util.List;
 public class HouseDTO {
   private Long id;
   private String name;
-  private DistrictDTO district;
+  private Long districtId;
   private List<RoomDTO> rooms;
 }

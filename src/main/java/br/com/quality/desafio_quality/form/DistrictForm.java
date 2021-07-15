@@ -23,6 +23,6 @@ public class DistrictForm {
   @NotNull(message = "O valor não pode ser nulo.")
   @DecimalMin(value = "0.0", inclusive = false)
   @DecimalMax(value="9999999999999.99", message = "O valor não pode ter mais de 13 dígitos.")
-  @JsonProperty("value_distric_m2")
+  @JsonProperty("value_district_m2")
   private BigDecimal value;
 }

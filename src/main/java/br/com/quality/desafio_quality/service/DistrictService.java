@@ -41,7 +41,6 @@ public class DistrictService {
 
     public void update(long id, District d) {
         District district = this.get(id);
-        district.setHouses(d.getHouses());
         district.setName(d.getName());
         district.setValueM2(d.getValueM2());
         this.districtRepository.save(district);
