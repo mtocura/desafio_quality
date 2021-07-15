@@ -24,8 +24,8 @@ public class RoomService {
         return this.roomRepository.save(room);
     }
 
-    public void delete(Room room) {
-        this.roomRepository.delete(room);
+    public void delete(long id) {
+        this.roomRepository.deleteById(id);
     }
 
     public Room get(long id) {
@@ -34,5 +34,13 @@ public class RoomService {
 
     public List<Room> get() {
         return this.roomRepository.findAll();
+    }
+
+    public double calculateArea(double width, double length) {
+        return AreaUtil.calculate(width, length);
+    }
+
+    public double calculatePrice(double areaPrice, double areaM2) {
+        return areaPrice * areaM2;
     }
 }
