@@ -41,8 +41,7 @@ public class HouseController {
 
     @GetMapping("/houses/{id}")
     public ResponseEntity<?> getById(@PathVariable long id) {
-
-        return ResponseEntity.ok(this.houseService.get(id));
+        return ResponseEntity.ok(HouseConverter.houseEntityToDTO(this.houseService.get(id)));
     }
 
     @PutMapping("/houses/{id}")
