@@ -1,4 +1,4 @@
-package br.com.quality.desafio_quality.utils.area;
+package br.com.quality.desafio_quality.utils;
 
 import java.util.List;
 
