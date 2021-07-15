@@ -24,8 +24,8 @@ public class DistrictForm {
   private String name;
 
   @NotNull(message = "O valor não pode ser nulo.")
-  @NotEmpty(message = "O campo não pode estar vazio.")
-  @Size(max = 13, message = "O comprimento não pode exceder 13 digitos.")
+//  @NotEmpty(message = "O campo não pode estar vazio.")
+//  @Size(max = 13, message = "O comprimento não pode exceder 13 digitos.")
   @JsonProperty("value_distric_m2")
   private BigDecimal value;
 }

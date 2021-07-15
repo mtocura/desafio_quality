@@ -25,7 +25,7 @@ public class HouseForm {
   private String name;
 
   @NotNull(message = "O district não pode ser nulo.")
-  @NotEmpty(message = "O district não pode ser vazio.")
+//  @NotEmpty(message = "O district não pode ser vazio.")
   @Valid
   private DistrictForm district;
 

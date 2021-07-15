@@ -23,14 +23,14 @@ public class RoomForm {
   private String name;
 
   @NotNull(message = "A largura do cômodo não pode ser nula.")
-  @NotEmpty(message = "A largura do cômodo não pode estar vazia.")
-  @Pattern(regexp = "[0-25]", message = "A largura máxima permitida por cômodo é 25 metros.")
+//  @NotEmpty(message = "A largura do cômodo não pode estar vazia.")
+//  @Pattern(regexp = "[0-25]", message = "A largura máxima permitida por cômodo é 25 metros.")
   @JsonProperty("room_width")
   private double width;
 
   @NotNull(message = "O comprimento do cômodo não pode ser nulo.")
-  @NotEmpty(message = "O comprimento do cômodo não pode estar vazio.")
-  @Pattern(regexp = "[0-33]", message = "O comprimento máximo permitido por cômodo é 33 metros.")
+//  @NotEmpty(message = "O comprimento do cômodo não pode estar vazio.")
+//  @Pattern(regexp = "[0-33]", message = "O comprimento máximo permitido por cômodo é 33 metros.")
   @JsonProperty("room_length")
   private double length;
 }
