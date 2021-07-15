@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class DistrictDTO {
   private Long id;
+  private String name;
   @JsonProperty("value_m2")
   private BigDecimal value;
 }
