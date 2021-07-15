@@ -40,7 +40,7 @@ public class DistrictController {
 
     @GetMapping("/districts/{id}")
     public ResponseEntity<?> getById(@PathVariable long id) {
-        return ResponseEntity.ok(this.districtService.get(id));
+        return ResponseEntity.ok(DistrictConverter.districtEntityToDTO(this.districtService.get(id)));
     }
 
     @PutMapping("/districts/{id}")
