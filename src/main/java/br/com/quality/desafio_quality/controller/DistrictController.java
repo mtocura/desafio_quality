@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class DistrictController {
@@ -22,7 +24,7 @@ public class DistrictController {
     }
 
     @PostMapping("/district")
-    public ResponseEntity<?> createDistrict(@RequestBody DistrictForm districtForm) {
+    public ResponseEntity<?> createDistrict(@Valid @RequestBody DistrictForm districtForm) {
         return ResponseEntity.ok().body(this.districtService.create(DistrictConverter.districtFormToEntity(districtForm)));
     }
 
@@ -38,7 +40,7 @@ public class DistrictController {
 
 
     @PutMapping("/district/{id}")
-    public ResponseEntity<?> updateDistrict(@PathVariable long id, @RequestBody DistrictForm districtForm) {
+    public ResponseEntity<?> updateDistrict(@PathVariable long id, @Valid @RequestBody DistrictForm districtForm) {
         return districtService.update(id, DistrictConverter.districtFormToEntity(districtForm));
     }
 

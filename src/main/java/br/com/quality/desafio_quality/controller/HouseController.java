@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class HouseController {
@@ -22,7 +24,7 @@ public class HouseController {
     }
 
     @PostMapping("/house")
-    public ResponseEntity<?> createHouse(@RequestBody HouseForm houseForm) {
+    public ResponseEntity<?> createHouse(@Valid @RequestBody HouseForm houseForm) {
         return ResponseEntity.ok().body(this.houseService.create(HouseConverter.houseFormToEntity(houseForm)));
     }
 
@@ -39,7 +41,7 @@ public class HouseController {
     }
 
     @PutMapping("/house/{id}")
-    public ResponseEntity<?> updateHouse(@PathVariable long id, @RequestBody HouseForm houseForm) {
+    public ResponseEntity<?> updateHouse(@PathVariable long id, @Valid @RequestBody HouseForm houseForm) {
         return houseService.update(id, (HouseConverter.houseFormToEntity(houseForm)));
     }
 
@@ -47,4 +49,23 @@ public class HouseController {
     public void deleteHouse (@PathVariable long id) {
         this.houseService.delete(id);
     }
+
+    @GetMapping("/house/{id}/area")
+    public ResponseEntity<?> getCalculateArea(@PathVariable long id) {
+
+        return ResponseEntity.ok().body(this.houseService.getHouseArea(id));
+    }
+
+    @GetMapping("/house/{id}/price")
+    public ResponseEntity<?> calculatePrice(@PathVariable long id) {
+
+        return ResponseEntity.ok().body(this.houseService.calculatePrice(id));
+    }
+
+    @GetMapping("/house/{id}/areas/rooms")
+    public ResponseEntity<?> getRoomsAreas(@PathVariable long id) {
+
+        return ResponseEntity.ok().body(this.houseService.getRoomsAreas(id));
+    }
+
 }
