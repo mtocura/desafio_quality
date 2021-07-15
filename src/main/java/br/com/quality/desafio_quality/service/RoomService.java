@@ -20,20 +20,20 @@ public class RoomService {
         this.roomRepository = roomRepository;
     }
 
-    public Room create(Room room) {
-        return this.roomRepository.save(room);
-    }
-
-    public void delete(long id) {
-        this.roomRepository.deleteById(id);
-    }
-
     public Room get(long id) {
         return this.roomRepository.getById(id);
     }
 
     public List<Room> get() {
         return this.roomRepository.findAll();
+    }
+
+    public Room create(Room room) {
+        return this.roomRepository.save(room);
+    }
+
+    public void delete(long id) {
+        this.roomRepository.deleteById(id);
     }
 
     public double calculateArea(double width, double length) {

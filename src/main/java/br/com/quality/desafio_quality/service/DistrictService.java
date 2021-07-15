@@ -32,8 +32,8 @@ public class DistrictService {
         return this.districtRepository.save(district);
     }
 
-    public void delete(District district) {
-        this.districtRepository.delete(district);
+    public void delete(long id) {
+        this.districtRepository.deleteById(id);
     }
 
     public BigDecimal getAreaPrice(long id) {
