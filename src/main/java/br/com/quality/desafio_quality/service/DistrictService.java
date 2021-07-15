@@ -24,8 +24,9 @@ public class DistrictService {
 
     public District get(long id) {
         Optional<District> districtOptional = this.districtRepository.findById(id);
-        if (districtOptional.isPresent())
+        if (districtOptional.isPresent()) {
             return districtOptional.get();
+        }
 
         throw new DistrictNotFoundException("Distrito não encontrado");
     }
