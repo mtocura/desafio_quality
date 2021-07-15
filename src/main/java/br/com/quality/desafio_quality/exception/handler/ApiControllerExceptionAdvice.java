@@ -3,7 +3,7 @@ package br.com.quality.desafio_quality.exception.handler;
 import br.com.quality.desafio_quality.dto.ExceptionDTO;
 import br.com.quality.desafio_quality.dto.FieldExceptionDTO;
 import br.com.quality.desafio_quality.exception.HouseNotFoundException;
-import br.com.quality.desafio_quality.utils.exception.DistrictNotFoundException;
+import br.com.quality.desafio_quality.exception.DistrictNotFoundException;
 import br.com.quality.desafio_quality.utils.exception.FieldErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
