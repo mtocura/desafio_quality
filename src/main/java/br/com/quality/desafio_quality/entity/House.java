@@ -16,7 +16,7 @@ public class House {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
-  @ManyToOne
+  @ManyToOne(cascade=CascadeType.PERSIST)
   @JoinColumn(name = "district_id")
   private District district;
   @OneToMany(
