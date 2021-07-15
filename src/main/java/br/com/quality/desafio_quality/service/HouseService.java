@@ -47,6 +47,14 @@ public class HouseService {
         return this.houseRepository.save(house);
     }
 
+    public void update(long id, House h) {
+        House house = this.get(id);
+        house.setDistrict(h.getDistrict());
+        house.setName(h.getName());
+        house.setRooms(h.getRooms());
+        this.houseRepository.save(house);
+    }
+
     public void delete(long id) {
         this.houseRepository.deleteById(id);
     }
