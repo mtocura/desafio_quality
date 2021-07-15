@@ -18,15 +18,9 @@ public class District {
   private Long id;
   private String name;
   private BigDecimal valueM2;
-  @OneToMany(
-          mappedBy = "district",
-          cascade = CascadeType.ALL,
-          orphanRemoval = true)
-  private List<House> houses;
 
-  public District(String name, BigDecimal valueM2, List<House> houses) {
+  public District(String name, BigDecimal valueM2) {
     this.name = name;
     this.valueM2 = valueM2;
-    this.houses = houses;
   }
 }
