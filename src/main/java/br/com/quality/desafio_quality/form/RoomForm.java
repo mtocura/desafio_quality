@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
@@ -23,14 +20,14 @@ public class RoomForm {
   private String name;
 
   @NotNull(message = "A largura do cômodo não pode ser nula.")
-//  @NotEmpty(message = "A largura do cômodo não pode estar vazia.")
-//  @Pattern(regexp = "[0-25]", message = "A largura máxima permitida por cômodo é 25 metros.")
+  @Min(value = 1, message = "A largura mínima permitida deve ser maior que 0.")
+  @Max(value = 25, message = "A largura máxima permitida por cômodo é 25 metros.")
   @JsonProperty("room_width")
   private double width;
 
   @NotNull(message = "O comprimento do cômodo não pode ser nulo.")
-//  @NotEmpty(message = "O comprimento do cômodo não pode estar vazio.")
-//  @Pattern(regexp = "[0-33]", message = "O comprimento máximo permitido por cômodo é 33 metros.")
+  @Min(value = 1, message = "O comprimento mínimo deve ser maior que 0")
+  @Max(value = 33, message = "O comprimento máximo permitido por cômodo é 33 metros.")
   @JsonProperty("room_length")
   private double length;
 }
