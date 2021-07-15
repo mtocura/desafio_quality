@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomDTO {
+public class RoomSizeDTO {
   @JsonProperty("room_name")
   private String name;
   @JsonProperty("room_m2")
