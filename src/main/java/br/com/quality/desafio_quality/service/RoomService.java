@@ -11,25 +11,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoomService {
 
-    @Autowired
     private RoomRepository roomRepository;
 
-    public Room createRoom(RoomForm roomForm) {
-        ModelMapper modelMapper = new ModelMapper();
-        Room room = modelMapper.map(roomForm, Room.class);
+    @Autowired
+    public RoomService(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
+    }
+
+    public Room create(Room room) {
         Room createdRoom = this.roomRepository.save(room);
         return createdRoom;
     }
 
-    public void deleteRoom(RoomForm roomForm) {
-        ModelMapper modelMapper = new ModelMapper();
-        Room room = modelMapper.map(roomForm, Room.class);
+    public void delete(Room room) {
         this.roomRepository.delete(room);
     }
 
-    public RoomDTO getRoom(long id) {
-        ModelMapper modelMapper = new ModelMapper();
-        return new RoomDTO();
+    public Room get(long id) {
+        return this.roomRepository.getById(id);
     }
 
 }
