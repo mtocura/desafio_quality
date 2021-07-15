@@ -38,10 +38,9 @@ public class DistrictController {
         return ResponseEntity.ok(this.districtService.get(id));
     }
 
-
     @PutMapping("/district/{id}")
-    public ResponseEntity<?> updateDistrict(@PathVariable long id, @Valid @RequestBody DistrictForm districtForm) {
-        return districtService.update(id, DistrictConverter.districtFormToEntity(districtForm));
+    public void updateDistrict(@PathVariable long id, @Valid @RequestBody DistrictForm districtForm) {
+        districtService.update(id, DistrictConverter.districtFormToEntity(districtForm));
     }
 
     @DeleteMapping("/district/{id}")

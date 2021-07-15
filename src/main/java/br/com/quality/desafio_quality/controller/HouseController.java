@@ -41,8 +41,8 @@ public class HouseController {
     }
 
     @PutMapping("/house/{id}")
-    public ResponseEntity<?> updateHouse(@PathVariable long id, @Valid @RequestBody HouseForm houseForm) {
-        return houseService.update(id, (HouseConverter.houseFormToEntity(houseForm)));
+    public void updateHouse(@PathVariable long id, @Valid @RequestBody HouseForm houseForm) {
+       houseService.update(id, (HouseConverter.houseFormToEntity(houseForm)));
     }
 
     @DeleteMapping("/house/{id}")
@@ -59,7 +59,7 @@ public class HouseController {
     @GetMapping("/house/{id}/price")
     public ResponseEntity<?> calculatePrice(@PathVariable long id) {
 
-        return ResponseEntity.ok().body(this.houseService.calculatePrice(id));
+        return ResponseEntity.ok().body(this.houseService.getHousePrice(id));
     }
 
     @GetMapping("/house/{id}/areas/rooms")
