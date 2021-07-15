@@ -12,7 +12,7 @@ public class HouseConverter {
   public static House houseFormToEntity(HouseForm houseForm) {
     return new House(
             houseForm.getName(),
-            DistrictConverter.districtFormToEntity(houseForm.getDistrict()),
+            houseForm.getDistrictId(),
             RoomConverter.roomFormToEntity(houseForm.getRooms())
     );
   }
@@ -31,7 +31,7 @@ public class HouseConverter {
     return new HouseDTO(
             house.getId(),
             house.getName(),
-            DistrictConverter.districtEntityToDTO(house.getDistrict()),
+            house.getDistrictId(),
             RoomConverter.roomEntityToDTO(house.getRooms())
     );
   }
