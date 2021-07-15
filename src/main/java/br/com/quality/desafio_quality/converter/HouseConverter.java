@@ -1,5 +1,6 @@
 package br.com.quality.desafio_quality.converter;
 
+import br.com.quality.desafio_quality.dto.HouseDTO;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.form.HouseForm;
 
@@ -24,5 +25,24 @@ public class HouseConverter {
     }
 
     return houses;
+  }
+
+  public static HouseDTO houseEntityToDTO(House house) {
+    return new HouseDTO(
+            house.getId(),
+            house.getName(),
+            DistrictConverter.districtEntityToDTO(house.getDistrict()),
+            RoomConverter.roomEntityToDTO(house.getRooms())
+    );
+  }
+
+  public static List<HouseDTO> houseEntityToDTO(List<House> houses) {
+    List<HouseDTO> houseDTOS = new ArrayList<>();
+
+    for (House house : houses) {
+      houseDTOS.add(houseEntityToDTO(house));
+    }
+
+    return houseDTOS;
   }
 }
