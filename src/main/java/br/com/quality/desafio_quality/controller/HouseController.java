@@ -1,4 +1,4 @@
 package br.com.quality.desafio_quality.controller;
 
-public class HomeController {
+public class HouseController {
 }
