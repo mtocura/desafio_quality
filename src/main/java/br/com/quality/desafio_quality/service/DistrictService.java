@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -33,5 +34,9 @@ public class DistrictService {
 
     public void delete(District district) {
         this.districtRepository.delete(district);
+    }
+
+    public BigDecimal getAreaPrice(long id) {
+        return this.districtRepository.getById(id).getValueM2();
     }
 }
