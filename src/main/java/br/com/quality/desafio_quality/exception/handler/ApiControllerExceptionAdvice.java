@@ -2,7 +2,7 @@ package br.com.quality.desafio_quality.exception.handler;
 
 import br.com.quality.desafio_quality.dto.ExceptionDTO;
 import br.com.quality.desafio_quality.dto.FieldExceptionDTO;
-import br.com.quality.desafio_quality.exception.HouseNotExistsException;
+import br.com.quality.desafio_quality.exception.HouseNotFoundException;
 import br.com.quality.desafio_quality.utils.exception.FieldErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,8 @@ public class ApiControllerExceptionAdvice {
         return ResponseEntity.badRequest().body(exceptions);
     }
 
-    @ExceptionHandler(HouseNotExistsException.class)
-    public ResponseEntity<?> houseNotExistsHandler(HouseNotExistsException e) {
+    @ExceptionHandler(HouseNotFoundException.class)
+    public ResponseEntity<?> houseNotExistsHandler(HouseNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDTO(e.getMessage()));
     }
 }
