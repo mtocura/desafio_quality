@@ -36,8 +36,7 @@ public class HouseController {
 
     @GetMapping("/houses")
     public ResponseEntity<?> getAll() {
-
-        return ResponseEntity.ok().body(this.houseService.get());
+        return ResponseEntity.ok().body(HouseConverter.houseEntityToDTO(this.houseService.get()));
     }
 
     @GetMapping("/houses/{id}")
