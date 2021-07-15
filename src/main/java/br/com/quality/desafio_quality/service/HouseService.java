@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,7 +78,7 @@ public class HouseService {
 
         BigDecimal totalPrice = districtValue.multiply(BigDecimal.valueOf(houseTotalArea.getM2()));
 
-        return new HouseValueDTO(house.getName(), houseTotalArea.getM2(), totalPrice);
+        return new HouseValueDTO(house.getName(), houseTotalArea.getM2(), totalPrice.setScale(2, RoundingMode.FLOOR));
     }
 
     public List<RoomSizeDTO> getRoomsAreas(long houseId) {

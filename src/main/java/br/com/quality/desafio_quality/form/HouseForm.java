@@ -24,13 +24,11 @@ public class HouseForm {
   @JsonProperty("prop_name")
   private String name;
 
-  @NotNull(message = "O district não pode ser nulo.")
-//  @NotEmpty(message = "O district não pode ser vazio.")
   @Valid
+  @NotNull(message = "O district não pode ser nulo.")
   private DistrictForm district;
 
-  @NotNull(message = "Os rooms não pode ser nulos.")
-  @NotEmpty(message = "Os rooms não podem ser vazios.")
   @Valid
+  @NotNull(message = "Os rooms não pode ser nulos.")
   private List<RoomForm> rooms;
 }
