@@ -60,8 +60,15 @@ public class HouseService {
         return AreaUtil.calculateTotalArea(areas);
     }
 
-    public double calculatePrice(double areaPrice, double totalAreaM2) {
-        return areaPrice * totalAreaM2;
+    public HouseValueDTO getHousePrice(long houseId) {
+        House house = get(houseId);
+        BigDecimal districtValue = house.getDistrict().getValueM2();
+
+        HouseSizeDTO houseTotalArea = calculateArea(houseId);
+
+        BigDecimal totalPrice = districtValue.multiply(BigDecimal.valueOf(houseTotalArea.getM2()));
+
+        return new HouseValueDTO(house.getName(), houseTotalArea.getM2(), totalPrice);
     }
 
     public List<RoomDTO> getRoomsAreas(long houseId) {
