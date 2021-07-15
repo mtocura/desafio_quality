@@ -6,6 +6,8 @@ import br.com.quality.desafio_quality.dto.RoomDTO;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.entity.Room;
 import br.com.quality.desafio_quality.exception.HouseNotFoundException;
+import br.com.quality.desafio_quality.form.HouseForm;
+import br.com.quality.desafio_quality.form.RoomForm;
 import br.com.quality.desafio_quality.repository.HouseRepository;
 import br.com.quality.desafio_quality.utils.AreaUtil;
 import lombok.NoArgsConstructor;
@@ -51,13 +53,14 @@ public class HouseService {
         this.houseRepository.deleteById(id);
     }
 
-    public double calculateArea(House house) {
+    public HouseSizeDTO calculateArea(long houseId) {
+        House house = get(houseId);
         List<Room> rooms = house.getRooms();
         List<Double> areas = rooms
                 .stream()
                 .map(room -> AreaUtil.calculate(room.getWidth(), room.getLength()))
                 .collect(Collectors.toList());
-        return AreaUtil.calculateTotalArea(areas);
+        return new HouseSizeDTO(house.getName(), AreaUtil.calculateTotalArea(areas));
     }
 
     public double calculatePrice(double areaPrice, double totalAreaM2) {
