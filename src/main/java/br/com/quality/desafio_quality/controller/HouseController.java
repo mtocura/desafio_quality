@@ -25,30 +25,30 @@ public class HouseController {
     }
 
     @PostMapping("/houses")
-    public ResponseEntity<?> createHouse(@Valid @RequestBody HouseForm houseForm) {
+    public ResponseEntity<?> create(@Valid @RequestBody HouseForm houseForm) {
         return ResponseEntity.ok().body(this.houseService.create(HouseConverter.houseFormToEntity(houseForm)));
     }
 
     @GetMapping("/houses")
-    public ResponseEntity<?> getAllHouses() {
+    public ResponseEntity<?> getAll() {
 
         return ResponseEntity.ok().body(this.houseService.get());
     }
 
     @GetMapping("/houses/{id}")
-    public ResponseEntity<?> getHouseById(@PathVariable long id) {
+    public ResponseEntity<?> getById(@PathVariable long id) {
 
         return ResponseEntity.ok(this.houseService.get(id));
     }
 
     @PutMapping("/houses/{id}")
-    public ResponseEntity<?> updateHouse(@PathVariable long id, @Valid @RequestBody HouseForm houseForm) {
+    public ResponseEntity<?> update(@PathVariable long id, @Valid @RequestBody HouseForm houseForm) {
         houseService.update(id, (HouseConverter.houseFormToEntity(houseForm)));
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/houses/{id}")
-    public ResponseEntity<?> deleteHouse(@PathVariable long id) {
+    public ResponseEntity<?> delete(@PathVariable long id) {
        houseService.delete(id);
        return ResponseEntity.ok().build();
     }
@@ -71,7 +71,7 @@ public class HouseController {
         return ResponseEntity.ok().body(this.houseService.getRoomsAreas(id));
     }
 
-    @GetMapping("/rooms/{id}/area")
+    @GetMapping("/houses/{id}/rooms/area")
     public ResponseEntity<?> getCalculateAreaRoom(@PathVariable long id) {
 
         return ResponseEntity.ok().body(this.houseService.largestRoom(id));

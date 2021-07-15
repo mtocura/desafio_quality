@@ -24,28 +24,28 @@ public class DistrictController {
     }
 
     @PostMapping("/districts")
-    public ResponseEntity<?> createDistrict(@Valid @RequestBody DistrictForm districtForm) {
+    public ResponseEntity<?> create(@Valid @RequestBody DistrictForm districtForm) {
         return ResponseEntity.ok().body(this.districtService.create(DistrictConverter.districtFormToEntity(districtForm)));
     }
 
     @GetMapping("/districts")
-    public ResponseEntity<?> getAllDistricts() {
+    public ResponseEntity<?> getAll() {
         return ResponseEntity.ok().body(this.districtService.get());
     }
 
     @GetMapping("/districts/{id}")
-    public ResponseEntity<?> getDistrictById(@PathVariable long id) {
+    public ResponseEntity<?> getById(@PathVariable long id) {
         return ResponseEntity.ok(this.districtService.get(id));
     }
 
     @PutMapping("/districts/{id}")
-    public ResponseEntity<?> updateDistrict(@PathVariable long id, @Valid @RequestBody DistrictForm districtForm) {
+    public ResponseEntity<?> update(@PathVariable long id, @Valid @RequestBody DistrictForm districtForm) {
         districtService.update(id, DistrictConverter.districtFormToEntity(districtForm));
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/districts/{id}")
-    public ResponseEntity<?> deleteDistrict (@PathVariable long id) {
+    public ResponseEntity<?> delete(@PathVariable long id) {
         districtService.delete(id);
         return ResponseEntity.ok().build();
     }
