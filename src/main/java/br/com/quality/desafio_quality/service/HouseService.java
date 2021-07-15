@@ -50,7 +50,7 @@ public class HouseService {
         this.houseRepository.delete(house);
     }
 
-    public List<RoomDTO> getRoomsArea(long houseId) {
+    public List<RoomDTO> getRoomsAreas(long houseId) {
         House house = get(houseId);
         List<RoomDTO> rooms = new ArrayList<>();
 
