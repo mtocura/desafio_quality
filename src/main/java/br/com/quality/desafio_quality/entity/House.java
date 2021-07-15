@@ -16,9 +16,7 @@ public class House {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
-  @ManyToOne
-  @JoinColumn(name = "district_id")
-  private District district;
+  private Long districtId;
   @OneToMany(
           cascade = CascadeType.ALL,
           orphanRemoval = true
@@ -26,9 +24,9 @@ public class House {
   @JoinColumn(name = "house_id")
   private List<Room> rooms;
 
-  public House(String name, District district, List<Room> rooms) {
+  public House(String name, Long districtId, List<Room> rooms) {
     this.name = name;
-    this.district = district;
+    this.districtId = districtId;
     this.rooms = rooms;
   }
 }
