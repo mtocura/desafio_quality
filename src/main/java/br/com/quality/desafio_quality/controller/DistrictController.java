@@ -1,5 +1,6 @@
 package br.com.quality.desafio_quality.controller;
 
+import br.com.quality.desafio_quality.converter.DistrictConverter;
 import br.com.quality.desafio_quality.form.DistrictForm;
 import br.com.quality.desafio_quality.service.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +23,21 @@ public class DistrictController {
 
     @PostMapping("/district")
     public ResponseEntity<?> createDistrict(@RequestBody DistrictForm districtForm) {
-        return ResponseEntity.ok().body(this.districtService);
+        return ResponseEntity.ok().body(this.districtService.create(DistrictConverter.districtFormToEntity(districtForm)));
     }
-
 
     @GetMapping("/district")
     public ResponseEntity<?> getAllDistricts() {
-        return ResponseEntity.ok().body(this.districtService);
+        return ResponseEntity.ok().body(this.districtService.get());
     }
 
     @GetMapping("/district/{id}")
     public ResponseEntity<?> getDistrictById(@PathVariable long id) {
-        return ResponseEntity.ok(this.districtService);
+        return ResponseEntity.ok(this.districtService.get(id));
+    }
+
+    @DeleteMapping("/district/{id}")
+    public void deleteDistrict (@PathVariable long id) {
+        this.districtService.delete(id);
     }
 }

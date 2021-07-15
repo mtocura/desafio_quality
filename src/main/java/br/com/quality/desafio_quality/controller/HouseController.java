@@ -25,14 +25,20 @@ public class HouseController {
         return ResponseEntity.ok().body(this.houseService);
     }
 
-
     @GetMapping("/house")
     public ResponseEntity<?> getAllHouses() {
+
         return ResponseEntity.ok().body(this.houseService);
     }
 
     @GetMapping("/house/{id}")
     public ResponseEntity<?> getHouseById(@PathVariable long id) {
+
         return ResponseEntity.ok(this.houseService);
+    }
+
+    @DeleteMapping("/house/{id}")
+    public void deleteHouse (@PathVariable long id) {
+        this.houseService.delete(id);
     }
 }
