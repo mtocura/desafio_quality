@@ -3,9 +3,11 @@ package br.com.quality.desafio_quality.service;
 import br.com.quality.desafio_quality.dto.HouseSizeDTO;
 import br.com.quality.desafio_quality.dto.HouseValueDTO;
 import br.com.quality.desafio_quality.dto.RoomSizeDTO;
+import br.com.quality.desafio_quality.entity.District;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.entity.Room;
 import br.com.quality.desafio_quality.exception.HouseNotFoundException;
+import br.com.quality.desafio_quality.repository.DistrictRepository;
 import br.com.quality.desafio_quality.repository.HouseRepository;
 import br.com.quality.desafio_quality.utils.AreaUtil;
 import lombok.NoArgsConstructor;
@@ -24,10 +26,12 @@ import java.util.stream.Collectors;
 public class HouseService {
 
     private HouseRepository houseRepository;
+    private DistrictService districtService;
 
     @Autowired
-    public HouseService(HouseRepository houseRepository) {
+    public HouseService(HouseRepository houseRepository, DistrictService districtService) {
         this.houseRepository = houseRepository;
+        this.districtService = districtService;
     }
 
     public House get(long id) {
@@ -45,12 +49,13 @@ public class HouseService {
     }
 
     public House create(House house) {
+        this.districtService.get(house.getDistrictId());
         return this.houseRepository.save(house);
     }
 
     public void update(long id, House h) {
         House house = this.get(id);
-        house.setDistrict(h.getDistrict());
+        house.setDistrictId(h.getDistrictId());
         house.setName(h.getName());
         house.setRooms(h.getRooms());
         this.houseRepository.save(house);
@@ -72,7 +77,9 @@ public class HouseService {
 
     public HouseValueDTO getHousePrice(long houseId) {
         House house = get(houseId);
-        BigDecimal districtValue = house.getDistrict().getValueM2();
+        District district = this.districtService.get(house.getDistrictId());
+
+        BigDecimal districtValue = district.getValueM2();
 
         HouseSizeDTO houseTotalArea = getHouseArea(houseId);
 
