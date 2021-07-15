@@ -1,13 +1,13 @@
 package br.com.quality.desafio_quality.service;
 
-import br.com.quality.desafio_quality.dto.RoomDTO;
 import br.com.quality.desafio_quality.entity.Room;
-import br.com.quality.desafio_quality.form.RoomForm;
 import br.com.quality.desafio_quality.repository.RoomRepository;
+import br.com.quality.desafio_quality.utils.AreaUtil;
 import lombok.NoArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @NoArgsConstructor
@@ -21,8 +21,7 @@ public class RoomService {
     }
 
     public Room create(Room room) {
-        Room createdRoom = this.roomRepository.save(room);
-        return createdRoom;
+        return this.roomRepository.save(room);
     }
 
     public void delete(Room room) {
@@ -33,4 +32,7 @@ public class RoomService {
         return this.roomRepository.getById(id);
     }
 
+    public List<Room> get() {
+        return this.roomRepository.findAll();
+    }
 }
