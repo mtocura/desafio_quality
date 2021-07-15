@@ -19,9 +19,9 @@ public class AreaUtilTest {
 
     @BeforeEach
     public void init() {
-        RoomDTO r1 = new RoomDTO(1l, "Mock 1", 10, 10);
-        RoomDTO r2 = new RoomDTO(2l, "Mock 2", 10, 10);
-        RoomDTO r3 = new RoomDTO(3l, "Mock 3", 10, 10);
+        RoomDTO r1 = new RoomDTO(1l, "Mock 1", 10.0, 10.0);
+        RoomDTO r2 = new RoomDTO(2l, "Mock 2", 10.0, 10.0);
+        RoomDTO r3 = new RoomDTO(3l, "Mock 3", 10.0, 10.0);
 
         double a1 = AreaUtil.calculate(r1.getWidth(), r1.getLength());
         double a2 = AreaUtil.calculate(r2.getWidth(), r2.getLength());
@@ -34,7 +34,7 @@ public class AreaUtilTest {
 
     @Test
     public void shouldReturnCalculateAreaRoom(){
-        double expectedAreaRoom = (double) 10 * 10;
+        double expectedAreaRoom = (double) 10.0 * 10.0;
 
         double responseAreaRoom = AreaUtil.calculate(this.roomMock.getWidth(), this.roomMock.getLength());
 
@@ -43,7 +43,7 @@ public class AreaUtilTest {
 
     @Test
     public void shouldReturnCalculateTotalArea(){
-        double expectedArea = (double) 100 + 100 + 100;
+        double expectedArea = (double) 100.0 + 100.0 + 100.0;
 
         double responseArea = AreaUtil.calculateTotalArea(this.roomsListMock);
 
