@@ -35,7 +35,7 @@ public class DistrictController {
 
     @GetMapping("/districts")
     public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok().body(this.districtService.get());
+        return ResponseEntity.ok().body(DistrictConverter.districtEntityToDTO(this.districtService.get()));
     }
 
     @GetMapping("/districts/{id}")
