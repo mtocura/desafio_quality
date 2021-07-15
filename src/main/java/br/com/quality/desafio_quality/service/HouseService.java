@@ -1,12 +1,18 @@
 package br.com.quality.desafio_quality.service;
 
+import br.com.quality.desafio_quality.dto.RoomDTO;
 import br.com.quality.desafio_quality.entity.House;
+import br.com.quality.desafio_quality.entity.Room;
+import br.com.quality.desafio_quality.exception.HouseNotExistsException;
 import br.com.quality.desafio_quality.repository.HouseRepository;
+import br.com.quality.desafio_quality.utils.AreaUtil;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @NoArgsConstructor
@@ -20,7 +26,13 @@ public class HouseService {
     }
 
     public House get(long id) {
-        return this.houseRepository.getById(id);
+        Optional<House> optionalHouse = this.houseRepository.findById(id);
+
+        if(optionalHouse.isPresent()) {
+            return optionalHouse.get();
+        }
+
+        throw new HouseNotExistsException("Propriedade não encontrada.");
     }
 
     public List<House> get() {
@@ -33,5 +45,16 @@ public class HouseService {
 
     public void delete(House house) {
         this.houseRepository.delete(house);
+    }
+
+    public List<RoomDTO> calculateRoomsArea(long houseId) {
+        House house = get(houseId);
+        List<RoomDTO> rooms = new ArrayList<>();
+
+        for (Room room : house.getRooms()) {
+            rooms.add(new RoomDTO(room.getName(), AreaUtil.calculate(room.getWidth(), room.getLength())));
+        }
+
+        return rooms;
     }
 }
