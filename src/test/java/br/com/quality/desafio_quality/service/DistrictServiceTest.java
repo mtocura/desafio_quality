@@ -1,9 +1,11 @@
 package br.com.quality.desafio_quality.service;
 
 import br.com.quality.desafio_quality.entity.District;
+import br.com.quality.desafio_quality.exception.DistrictNotFoundException;
 import br.com.quality.desafio_quality.repository.DistrictRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class DistrictServiceTest {
@@ -36,6 +39,18 @@ public class DistrictServiceTest {
         // Assert
         verify(this.repository, times(1)).findById(0L);
         assertEquals(d, expected);
+    }
+
+    @Test
+    void shouldReturnDistrictNotFoundException() {
+        // Arrange
+        Executable get = () -> this.service.get(1L);
+
+        // Act
+        DistrictNotFoundException ex = assertThrows(DistrictNotFoundException.class, get);
+
+        // Assert
+        assertEquals(ex.getMessage(), DistrictNotFoundException.DEFAULT_MESSAGE);
     }
 
     @Test
