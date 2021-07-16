@@ -47,12 +47,6 @@ public class DistrictControllerTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
-    private HouseService houseService;
-
-    @Autowired
-    private DistrictService districtService;
-
-    @Autowired
     private HouseRepository houseRepository;
 
     @Autowired
@@ -111,7 +105,7 @@ public class DistrictControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(result -> Assertions.assertTrue(result.getResolvedException() instanceof DistrictNotFoundException))
-                .andExpect(result -> Assertions.assertTrue(result.getResolvedException().getMessage().contains("não encontrado")));
+                .andExpect(result -> Assertions.assertTrue(result.getResolvedException().getMessage().contains(DistrictNotFoundException.DEFAULT_MESSAGE)));
     }
 
     @Test
