@@ -5,8 +5,11 @@ import br.com.quality.desafio_quality.dto.RoomDTO;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.entity.Room;
 import br.com.quality.desafio_quality.form.HouseForm;
+import br.com.quality.desafio_quality.form.HouseUpdateForm;
 import br.com.quality.desafio_quality.form.RoomForm;
 import static org.assertj.core.api.Assertions.*;
+
+import br.com.quality.desafio_quality.form.RoomUpdateForm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +26,17 @@ public class HouseConverterTest {
     House expectedHouse = new House("Propriedade Mock", 1l, createRoomList());
 
     House responseHouse = HouseConverter.houseFormToEntity(houseForm);
+
+    Assertions.assertNotNull(responseHouse);
+    assertThat(responseHouse).usingRecursiveComparison().isEqualTo(expectedHouse);
+  }
+
+  @Test
+  public void shouldReturnAnInstanceOfHouseEntityUpdateMethod() {
+    HouseUpdateForm houseForm = new HouseUpdateForm("Propriedade Mock", 1l, createRoomUpdateFormList());
+    House expectedHouse = new House("Propriedade Mock", 1l, createRoomList());
+
+    House responseHouse = HouseConverter.houseUpdateFormToEntity(houseForm);
 
     Assertions.assertNotNull(responseHouse);
     assertThat(responseHouse).usingRecursiveComparison().isEqualTo(expectedHouse);
@@ -87,5 +101,11 @@ public class HouseConverterTest {
     RoomDTO roomDTO1 = new RoomDTO(null, "Sala", 3.5, 2);
     RoomDTO roomDTO2 = new RoomDTO(null, "Quarto", 2.5, 2);
     return new ArrayList<>(Arrays.asList(roomDTO1, roomDTO2));
+  }
+
+  private List<RoomUpdateForm> createRoomUpdateFormList() {
+    RoomUpdateForm roomUpdateForm1 = new RoomUpdateForm(null, "Sala", 3.5, 2);
+    RoomUpdateForm roomUpdateForm2 = new RoomUpdateForm(null, "Quarto", 2.5, 2);
+    return new ArrayList<>(Arrays.asList(roomUpdateForm1, roomUpdateForm2));
   }
 }
