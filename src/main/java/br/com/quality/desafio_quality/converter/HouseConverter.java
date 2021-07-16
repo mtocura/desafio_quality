@@ -3,6 +3,7 @@ package br.com.quality.desafio_quality.converter;
 import br.com.quality.desafio_quality.dto.HouseDTO;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.form.HouseForm;
+import br.com.quality.desafio_quality.form.HouseUpdateForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,14 @@ public class HouseConverter {
             houseForm.getName(),
             houseForm.getDistrictId(),
             RoomConverter.roomFormToEntity(houseForm.getRooms())
+    );
+  }
+
+  public static House houseUpdateFormToEntity(HouseUpdateForm houseUpdateForm) {
+    return new House(
+            houseUpdateForm.getName(),
+            houseUpdateForm.getDistrictId(),
+            RoomConverter.roomUpdateFormToEntity(houseUpdateForm.getRooms())
     );
   }
 
