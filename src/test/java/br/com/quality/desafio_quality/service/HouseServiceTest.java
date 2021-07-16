@@ -38,10 +38,9 @@ public class HouseServiceTest {
         this.houseRepository = Mockito.mock(HouseRepository.class);
         this.districtService = Mockito.mock(DistrictService.class);
         this.houseService = new HouseService(this.houseRepository, this.districtService);
-        this.roomsMock = Arrays.asList(
-                new Room("Sala", 20L, 20L),
-                new Room("Cozinha", 10L, 10L)
-        );
+        this.roomsMock = new ArrayList<>();
+        this.roomsMock.add(new Room("Sala", 20L, 20L));
+        this.roomsMock.add(new Room("Cozinha", 10L, 10L));
         this.houseMock = new House("Casa 1", 1L, this.roomsMock);
         this.districtMock = new District( "Bairro", new BigDecimal(10));
     }
