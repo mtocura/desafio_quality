@@ -100,12 +100,8 @@ public class HouseService {
     }
 
     public RoomSizeDTO largestRoom(long id) {
-        Optional<House> h = this.houseRepository.findById(id);
-        if (h.isEmpty()) {
-            throw new HouseNotFoundException("A casa " + id + " não foi encontrada");
-        }
-        Room r = h
-                .get()
+        House house = this.get(id);
+        Room r = house
                 .getRooms()
                 .stream()
                 .reduce(null, HouseService::selectHouse);
