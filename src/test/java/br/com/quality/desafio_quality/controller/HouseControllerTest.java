@@ -14,9 +14,7 @@ import br.com.quality.desafio_quality.converter.HouseConverter;
 import br.com.quality.desafio_quality.entity.District;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.exception.HouseNotFoundException;
-import br.com.quality.desafio_quality.form.DistrictForm;
-import br.com.quality.desafio_quality.form.HouseForm;
-import br.com.quality.desafio_quality.form.RoomForm;
+import br.com.quality.desafio_quality.form.*;
 import br.com.quality.desafio_quality.repository.DistrictRepository;
 import br.com.quality.desafio_quality.repository.HouseRepository;
 import br.com.quality.desafio_quality.service.DistrictService;
@@ -122,7 +120,7 @@ public class HouseControllerTest {
         this.districtRepository.save(createDistrict());
         House house = createHouse();
         this.houseRepository.save(house);
-        String payload = objectMapper.writeValueAsString(createHouseForm());
+        String payload = objectMapper.writeValueAsString(createHouseUpdateForm());
 
         mock.perform(put("/api/houses/{id}", house.getId())
                 .contentType("application/json")
@@ -178,6 +176,10 @@ public class HouseControllerTest {
         return new HouseForm("Mock House", 1L, createRoomFormList());
     }
 
+    private HouseUpdateForm createHouseUpdateForm() {
+        return new HouseUpdateForm("Mock House", 1L, createRoomUpdateFormList());
+    }
+
     private DistrictForm createDistrictForm() {
         return new DistrictForm("Mock District", new BigDecimal(200));
     }
@@ -195,5 +197,12 @@ public class HouseControllerTest {
         RoomForm roomForm2 = new RoomForm("Sala", 20, 12);
 
         return new ArrayList<>(Arrays.asList(roomForm1, roomForm2));
+    }
+
+    private List<RoomUpdateForm> createRoomUpdateFormList() {
+        RoomUpdateForm roomUpdateForm1 = new RoomUpdateForm(1L,"Cozinha", 6, 8);
+        RoomUpdateForm roomUpdateForm2 = new RoomUpdateForm(2L, "Sala", 20, 22);
+
+        return new ArrayList<>(Arrays.asList(roomUpdateForm1, roomUpdateForm2));
     }
 }
