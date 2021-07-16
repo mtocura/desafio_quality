@@ -247,3 +247,42 @@ Este repositório contém a solução para o desafio quality.
     "message": "Propriedade não encontrada."
   }
   ```
+  
+- ### PUT `/api/houses/{id}`
+  - Endpoint responsável por atualizar uma propriedade em específico
+  - Body request:
+  ````
+  {
+    "prop_name": "Casa",
+    "districtId" : 1,
+    "rooms" :
+    [
+      {
+        "room_id" : 1,
+        "room_name" : "Banheiro",
+        "room_width": 10,
+        "room_length": 10
+      }
+    ]
+  }
+  ````
+  - Caso o id passado como parâmetro exista no banco de dados, o status de retorno
+  é `200`
+  - Caso o id não exista o código é `404` com o seguinte body:
+  ```
+  {
+    "message": "Propriedade não encontrada."
+  }
+  ```
+  
+- ### DELETE `/api/houses/{id}`
+  - Endpoint responsável por remover o registro de uma propriedade de um banco de
+  dados
+  - Caso o id passado como parâmetro exista no banco de dados, o status de retorno
+  é `200`
+  - Caso o id não exista o código é `404` com o seguinte body:
+  ```
+  {
+    "message": "Propriedade não encontrada."
+  }
+  ```  
