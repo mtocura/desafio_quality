@@ -160,4 +160,90 @@ Este repositório contém a solução para o desafio quality.
   {
     "message": "Distrito não encontrado"
   }
-  ```   
+  ``` 
+  
+- ### GET `/api/houses`
+  - Endpoint responsável por retornar uma lista de propriedades cadastradas no
+  banco
+  - Body response (`200`):
+  ```
+  [
+    {
+        "id": 1,
+        "name": "Casa",
+        "district": {
+            "id": 1,
+            "value_m2": 13000.00
+        },
+        "rooms": [
+            {
+                "id": 1,
+                "name": "Sala",
+                "width": 15.0,
+                "length": 20.0
+            },
+            {
+                "id": 2,
+                "name": "Quarto",
+                "width": 10.0,
+                "length": 20.0
+            },
+            {
+                "id": 3,
+                "name": "Cozinha",
+                "width": 20.0,
+                "length": 20.0
+            },
+            {
+                "id": 4,
+                "name": "Banheiro",
+                "width": 5.0,
+                "length": 10.0
+            }
+        ]
+    }
+  ]
+  ```
+  
+- ### GET `/api/hosues/{id}`
+  - Endpoint responsável por retornar uma propriedade específica
+  - Body response (`200`):
+  ```
+  {
+    "id": 1,
+    "name": "Casa",
+    "districtId": 1,
+    "rooms": [
+        {
+            "id": 1,
+            "name": "Sala",
+            "width": 15.0,
+            "length": 20.0
+        },
+        {
+            "id": 2,
+            "name": "Quarto",
+            "width": 10.0,
+            "length": 20.0
+        },
+        {
+            "id": 3,
+            "name": "Cozinha",
+            "width": 20.0,
+            "length": 20.0
+        },
+        {
+            "id": 4,
+            "name": "Banheiro",
+            "width": 5.0,
+            "length": 10.0
+        }
+    ]
+  }
+  ```
+  - Caso o id passado como parâmetro o código de retono é `404` com o seguinte body:
+  ```
+  {
+    "message": "Propriedade não encontrada."
+  }
+  ```
