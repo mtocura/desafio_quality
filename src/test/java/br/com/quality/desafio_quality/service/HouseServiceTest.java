@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-public class HouseTestService {
+public class HouseServiceTest {
 
     private HouseRepository houseRepository;
     private HouseService houseService;
