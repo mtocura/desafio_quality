@@ -3,7 +3,7 @@
 Este repositório contém a solução para o desafio quality.
 
 ## Bairros
-| Parâmetro | Tipo | Descrição/Exemplo |
+| Parâmetro | Tipo | Descrição |
 | --------- | ---- | ----------------- |
 | prop_district | String | Nome do bairro |
 | value_district_m2 | BigDecimal | Valor do m2 no bairro |
@@ -81,3 +81,23 @@ Este repositório contém a solução para o desafio quality.
         "message": "Distrito não encontrado"
     }
     ```
+  
+## Propriedades
+| Parâmetro | Tipo | Descrição |
+| --------- | ---- | ----------------- |
+| id | Long | ID de uma propriedade |
+| prop_name | String | Nome da propriedade |
+| districtId | Long | Id do bairro |
+| rooms | Array de Room | Lista de cômodos de uma propriedade |
+| prop_m2 | Double | Tamanho em m2 de uma propriedade |
+| value | BigDecimal | Valor total de uma propriedade baseada em seu tamanho e bairro |
+
+### Cômodos
+| Parâmetro | Tipo | Descrição |
+| --------- | ---- | --------- |
+| id | Long | ID de um cômodo |
+| room_name | String | Nome do cômodo |
+| room_width | Double | Largura de um cômodo |
+| room_length | Double | Comprimento de um cômodo |
+| room_m2 | Double | Tamanho em m2 de um cômodo |
+
