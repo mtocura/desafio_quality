@@ -41,7 +41,7 @@ public class ApiControllerExceptionAdvice {
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public ResponseEntity<?> emptyResultDataAccessHandler(EmptyResultDataAccessException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDTO("Distrito não encontrado"));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDTO(e.getMessage());
     }
 
 }
