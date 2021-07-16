@@ -286,3 +286,85 @@ Este repositório contém a solução para o desafio quality.
     "message": "Propriedade não encontrada."
   }
   ```  
+  
+- ### GET `/api/houses/{id}/areas`
+  - Endpoint responsável por retornar o tamanho em m2 de uma propriedade
+  - Body response (`200`):
+  ```
+  {
+    "prop_name": "Casa",
+    "prop_m2": 950.0
+  }
+  ```
+  - Caso o id não exista no banco é retornado o código `404` com o seguinte body:
+  ```
+  {
+    "message": "Propriedade não encontrada."
+  }
+  ```
+  
+- ### GET `/api/house/{id}/price`
+  - Endpoint responsável por retornar o valor total de uma propriedade baseado
+  no valor do m2 do bairro
+  - Body response (`200`):
+  ```
+  {
+    "value": 11875475.00,
+    "prop_name": "Casa",
+    "prop_m2": 950.0
+  }
+  ```
+  - Caso o id não exista no banco é retornado o código `404` com o seguinte body:
+  ```
+  {
+    "message": "Propriedade não encontrada."
+  }
+  ```
+  
+- ### GET `/api/houses/{id}/areas/rooms`
+  - Endpoint responsável por retornar o tamanho de cada cômodo de uma determinada
+  propriedade
+  - Body response (`200`):
+  ```
+  [
+    {
+        "room_name": "Sala",
+        "room_m2": 300.0
+    },
+    {
+        "room_name": "Quarto",
+        "room_m2": 200.0
+    },
+    {
+        "room_name": "Cozinha",
+        "room_m2": 400.0
+    },
+    {
+        "room_name": "Banheiro",
+        "room_m2": 50.0
+    }
+  ]
+  ```
+  - Caso o id não exista no banco é retornado o código `404` com o seguinte body:
+  ```
+  {
+    "message": "Propriedade não encontrada."
+  }
+  ```
+  
+- ### GET `/api/houses/{id}/rooms/area`
+  - Endpoint responsável por retornar o maior cômodo de uma propriedade
+  específica
+  - Body response (`200`):
+  ```
+  {
+    "room_name": "Cozinha",
+    "room_m2": 400.0
+  }
+  ```
+  - Caso o id não exista no banco é retornado o código `404` com o seguinte body:
+  ```
+  {
+    "message": "Propriedade não encontrada."
+  }
+  ```
