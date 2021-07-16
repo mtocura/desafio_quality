@@ -56,6 +56,7 @@ public class HouseControllerTest {
 
     @BeforeEach
     public void init() {
+        this.districtRepository.deleteAll();
         this.houseRepository.deleteAll();
     }
 
@@ -68,8 +69,11 @@ public class HouseControllerTest {
 
     @Test
     public void shouldSaveAHouse() throws Exception {
-        this.districtRepository.save(createDistrict());
-        String payload = objectMapper.writeValueAsString(createHouseForm());
+        District district = createDistrict();
+        this.districtRepository.save(district);
+        HouseForm houseForm = createHouseForm();
+        houseForm.setDistrictId(district.getId());
+        String payload = objectMapper.writeValueAsString(houseForm);
         this.houseRepository.save(createHouse());
 
         mock.perform(post("/api/houses")
@@ -143,8 +147,11 @@ public class HouseControllerTest {
 
     @Test
     public void getCalculatePriceShouldThrowOk() throws Exception {
-        this.districtRepository.save(createDistrict());
-        House house = this.houseRepository.save(createHouse());
+        District district = createDistrict();
+        this.districtRepository.save(district);
+        House houseEntity = createHouse();
+        houseEntity.setDistrictId(district.getId());
+        House house = this.houseRepository.save(houseEntity);
 
         mock.perform(get("/api/houses/{id}/price", house.getId()))
                 .andExpect(status().isOk());
