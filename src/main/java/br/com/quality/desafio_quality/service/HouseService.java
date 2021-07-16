@@ -7,7 +7,6 @@ import br.com.quality.desafio_quality.entity.District;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.entity.Room;
 import br.com.quality.desafio_quality.exception.HouseNotFoundException;
-import br.com.quality.desafio_quality.repository.DistrictRepository;
 import br.com.quality.desafio_quality.repository.HouseRepository;
 import br.com.quality.desafio_quality.utils.AreaUtil;
 import lombok.NoArgsConstructor;
@@ -57,7 +56,8 @@ public class HouseService {
         House house = this.get(id);
         house.setDistrictId(h.getDistrictId());
         house.setName(h.getName());
-        house.setRooms(h.getRooms());
+        house.getRooms().clear();
+        house.getRooms().addAll(h.getRooms());
         this.houseRepository.save(house);
     }
 

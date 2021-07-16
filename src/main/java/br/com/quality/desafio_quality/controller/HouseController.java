@@ -3,6 +3,7 @@ package br.com.quality.desafio_quality.controller;
 import br.com.quality.desafio_quality.converter.HouseConverter;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.form.HouseForm;
+import br.com.quality.desafio_quality.form.HouseUpdateForm;
 import br.com.quality.desafio_quality.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +45,8 @@ public class HouseController {
     }
 
     @PutMapping("/houses/{id}")
-    public ResponseEntity<?> update(@PathVariable long id, @Valid @RequestBody HouseForm houseForm) {
-        houseService.update(id, (HouseConverter.houseFormToEntity(houseForm)));
+    public ResponseEntity<?> update(@PathVariable long id, @Valid @RequestBody HouseUpdateForm house) {
+        houseService.update(id, HouseConverter.houseUpdateFormToEntity(house));
         return ResponseEntity.ok().build();
     }
 
