@@ -1,4 +1,4 @@
-package br.com.quality.desafio_quality;
+package br.com.quality.desafio_quality.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
