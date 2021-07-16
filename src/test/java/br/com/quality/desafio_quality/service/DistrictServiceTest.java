@@ -12,8 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class DistrictServiceTest {
@@ -27,6 +26,12 @@ public class DistrictServiceTest {
     }
 
     @Test
+    void shouldConstructDistrictService() {
+        DistrictService s = assertDoesNotThrow(() -> new DistrictService());
+        assertNotNull(s);
+    }
+
+    @Test
     void shouldReturnValidDistrict() {
         // Arrange
         District expected = Factory.newValidDistrict();
@@ -34,11 +39,11 @@ public class DistrictServiceTest {
         when(this.repository.findById(0L)).thenReturn(opt);
 
         // Act
-        District d = this.service.get(0L);
+        District response = this.service.get(0L);
 
         // Assert
         verify(this.repository, times(1)).findById(0L);
-        assertEquals(d, expected);
+        assertEquals(response, expected);
     }
 
     @Test
@@ -60,11 +65,11 @@ public class DistrictServiceTest {
         when(this.repository.findAll()).thenReturn(expected);
 
         // Act
-        List<District> list = this.service.get();
+        List<District> response = this.service.get();
 
         // Assert
         verify(this.repository, times(1)).findAll();
-        assertEquals(list, expected);
+        assertEquals(response, expected);
     }
 
     @Test
@@ -74,11 +79,11 @@ public class DistrictServiceTest {
         when(this.repository.save(expected)).thenReturn(expected);
 
         // Act
-        District d = this.service.create(expected);
+        District response = this.service.create(expected);
 
         // Assert
         verify(this.repository, times(1)).save(expected);
-        assertEquals(d, expected);
+        assertEquals(response, expected);
     }
 
     @Test
@@ -118,10 +123,10 @@ public class DistrictServiceTest {
         when(this.repository.findById(0L)).thenReturn(opt);
 
         // Act
-        BigDecimal price = this.service.getAreaPrice(0L);
+        BigDecimal response = this.service.getAreaPrice(0L);
 
         // Assert
         verify(this.repository, times(1)).findById(0L);
-        assertEquals(price, district.getValueM2());
+        assertEquals(response, district.getValueM2());
     }
 }
