@@ -11,6 +11,7 @@ Este repositório contém a solução para o desafio quality.
 | name | String | Nome do bairro |
 | value_m2 | BigDecimal | Valor do m2 no bairro |
 | message | String | Mensagem de erro |
+| ValidationError | Map | Lista de chave-valor com as validações do payload |
 - ### POST ````/api/districts````
     - Endpoint responsável por cadastrar um bairro no banco de dados
     - Body request:
@@ -23,6 +24,15 @@ Este repositório contém a solução para o desafio quality.
     - Caso o body passado esteja de acordo com as regras de validações o bairro é
     cadastrado no sistema e como retorno temos o código ``201`` e no header temos
     a url de onde o bairro está cadastrado
+    - Caso o body não cumpra as validações de payload, é retornado o código `400`
+    com o seguinte body:
+    ```
+    {
+      "ValidationError": {
+          campo: mensagem de erro
+      }
+    }
+    ```  
       
 - ### GET `/api/districts`
     - Endpoint responsável por retornar uma lista com todos os bairros cadastrados
@@ -101,3 +111,53 @@ Este repositório contém a solução para o desafio quality.
 | room_length | Double | Comprimento de um cômodo |
 | room_m2 | Double | Tamanho em m2 de um cômodo |
 
+- ### POST ``/api/houses``
+  - Endpoint responsável por cadastrar uma propriedade no banco de dados
+  - Body request:
+  ```
+  {
+    "prop_name": "Casa",
+    "districtId": 1,
+    "rooms": [
+        {
+            "room_name": "Sala",
+            "room_width": 15,
+            "room_length": 20
+        },
+        {
+            "room_name": "Quarto",
+            "room_width": 10,
+            "room_length": 20
+        },
+        {
+            "room_name": "Cozinha",
+            "room_width": 20,
+            "room_length": 20
+        },
+        {
+            "room_name": "Banheiro",
+            "room_width": 5,
+            "room_length": 10
+        }
+    ]
+  }
+  ```
+  - Caso o body passado esteja de acordo com as regras de validações a propriedade
+  é cadastrada no sistema e como retorno temos o código ``201`` e no header temos
+  a url de onde a propriedade está cadastrada
+  - Caso o body não cumpra as validações de payload, é retornado o código `400`
+  com o seguinte body:
+  ```
+  {
+    "ValidationError": {
+      campo: mensagem de erro
+    }
+  }
+  ```  
+  - Caso o id do bairro (``districtId``) passado no payload não esteja cadastrado
+  na tabela de bairros, então o código de retorno é `404` com o seguinte body:
+  ```
+  {
+    "message": "Distrito não encontrado"
+  }
+  ```   
