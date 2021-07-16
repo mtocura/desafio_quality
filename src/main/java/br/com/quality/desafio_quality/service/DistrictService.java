@@ -28,7 +28,7 @@ public class DistrictService {
             return districtOptional.get();
         }
 
-        throw new DistrictNotFoundException("Distrito não encontrado");
+        throw new DistrictNotFoundException();
     }
 
     public List<District> get() {

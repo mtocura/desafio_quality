@@ -41,7 +41,7 @@ public class HouseService {
             return optionalHouse.get();
         }
 
-        throw new HouseNotFoundException("Propriedade não encontrada.");
+        throw new HouseNotFoundException();
     }
 
     public List<House> get() {
