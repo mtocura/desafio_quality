@@ -3,8 +3,9 @@ package br.com.quality.desafio_quality.exception.handler;
 import br.com.quality.desafio_quality.dto.ExceptionDTO;
 import br.com.quality.desafio_quality.dto.FieldExceptionDTO;
 import br.com.quality.desafio_quality.exception.HouseNotFoundException;
-import br.com.quality.desafio_quality.utils.exception.DistrictNotFoundException;
+import br.com.quality.desafio_quality.exception.DistrictNotFoundException;
 import br.com.quality.desafio_quality.utils.exception.FieldErrors;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -32,8 +33,14 @@ public class ApiControllerExceptionAdvice {
     public ResponseEntity<?> houseNotFoundHandler(HouseNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDTO(e.getMessage()));
     }
+
     @ExceptionHandler(DistrictNotFoundException.class)
     public ResponseEntity<?> districtNotFoundHandler(DistrictNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDTO(e.getMessage()));
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<?> emptyResultDataAccessHandler(EmptyResultDataAccessException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDTO(e.getMessage()));
     }
 

@@ -2,7 +2,7 @@ package br.com.quality.desafio_quality.service;
 
 import br.com.quality.desafio_quality.entity.District;
 import br.com.quality.desafio_quality.repository.DistrictRepository;
-import br.com.quality.desafio_quality.utils.exception.DistrictNotFoundException;
+import br.com.quality.desafio_quality.exception.DistrictNotFoundException;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class DistrictService {
             return districtOptional.get();
         }
 
-        throw new DistrictNotFoundException("Distrito não encontrado");
+        throw new DistrictNotFoundException();
     }
 
     public List<District> get() {
