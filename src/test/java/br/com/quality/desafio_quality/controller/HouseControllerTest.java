@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.quality.desafio_quality.controller.HouseController;
 import br.com.quality.desafio_quality.converter.DistrictConverter;
 import br.com.quality.desafio_quality.converter.HouseConverter;
 import br.com.quality.desafio_quality.entity.District;
@@ -17,8 +16,6 @@ import br.com.quality.desafio_quality.exception.HouseNotFoundException;
 import br.com.quality.desafio_quality.form.*;
 import br.com.quality.desafio_quality.repository.DistrictRepository;
 import br.com.quality.desafio_quality.repository.HouseRepository;
-import br.com.quality.desafio_quality.service.DistrictService;
-import br.com.quality.desafio_quality.service.HouseService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
