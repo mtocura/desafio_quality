@@ -54,12 +54,6 @@ public class HouseControllerTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
-    private HouseService houseService;
-
-    @Autowired
-    private DistrictService districtService;
-
-    @Autowired
     private HouseRepository houseRepository;
 
     @Autowired
@@ -120,7 +114,7 @@ public class HouseControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(result -> Assertions.assertTrue(result.getResolvedException() instanceof HouseNotFoundException))
-                .andExpect(result -> Assertions.assertTrue(result.getResolvedException().getMessage().contains("não encontrada")));
+                .andExpect(result -> Assertions.assertTrue(result.getResolvedException().getMessage().contains(HouseNotFoundException.DEFAULT_MESSAGE)));
     }
 
     @Test
