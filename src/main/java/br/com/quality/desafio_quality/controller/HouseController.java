@@ -4,7 +4,6 @@ import br.com.quality.desafio_quality.converter.HouseConverter;
 import br.com.quality.desafio_quality.entity.House;
 import br.com.quality.desafio_quality.form.HouseForm;
 import br.com.quality.desafio_quality.service.HouseService;
-import br.com.quality.desafio_quality.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
