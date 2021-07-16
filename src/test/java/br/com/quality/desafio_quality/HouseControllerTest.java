@@ -1,7 +1,5 @@
-package br.com.quality.desafio_quality.integration;
+package br.com.quality.desafio_quality;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -15,7 +13,6 @@ import br.com.quality.desafio_quality.converter.DistrictConverter;
 import br.com.quality.desafio_quality.converter.HouseConverter;
 import br.com.quality.desafio_quality.entity.District;
 import br.com.quality.desafio_quality.entity.House;
-import br.com.quality.desafio_quality.entity.Room;
 import br.com.quality.desafio_quality.exception.HouseNotFoundException;
 import br.com.quality.desafio_quality.form.DistrictForm;
 import br.com.quality.desafio_quality.form.HouseForm;
@@ -29,16 +26,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -145,13 +138,10 @@ public class HouseControllerTest {
 
     @Test
     public void shouldDeleteAHouse() throws Exception {
-        this.houseRepository = Mockito.mock(HouseRepository.class);
         House house = createHouse();
         this.houseRepository.save(house);
         mock.perform(delete("/api/houses/{id}", house.getId()))
                 .andExpect(status().isOk());
-
-        verify(this.houseRepository, times(1)).deleteById(house.getId());
     }
 
     @Test
